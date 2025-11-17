@@ -1,0 +1,26 @@
+/* CSS Variables and Theme Configuration */
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #1a1a2e;
+  --accent-cyan: #00ffff;
+  --accent-magenta: #ff00ff;
+  --accent-green: #00ff00;
+  --accent-amber: #ffc800;
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0c0;
+  --border-color: rgba(0, 255, 255, 0.3);
+  /* Updated for new parallax */
+  --mouse-x-factor: 0;
+  --mouse-y-factor: 0;
+}
+
+body {
+  color: var(--text-primary);
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden; /* Prevent body scroll */
+}
+
+.dark {
+  --bg-primary: #0a0a1a;
+  --bg-secondary: #1a1a2e;
+}

@@ -8,6 +8,11 @@ import { generateSpeech, generateCalendarSuggestion, generateNewsScript, getLate
 import type { Message, Settings, CallRecord, View, AiMode, CallState, WhiteboardElement, ProactiveAction, SearchFilterType, JobListing, ProactiveSuggestion, StudyHubItem, StudyProgress, Flashcard, ProactiveCalendarSuggestionContent, CalendarEvent, SharedSessionState, DataFileContent, Workflow, UserProfile, Persona, QuizContent, DebateContent, NewsArticle } from './lib/types';
 import { DEFAULT_SETTINGS, AI_MODES, VOICE_NAMES, WORKFLOW_ACTIONS } from './lib/constants';
 import { getUpcomingEvents, addCalendarEvent, deleteCalendarEvent } from './services/calendarService';
+
+// Import organized CSS files
+import './styles/variables.css';
+import './styles/animations.css';
+import './styles/utilities.css';
 import { useAuth } from './hooks/useAuth';
 import ApiKeyWarning from './components/ApiKeyWarning';
 import { ChatUI } from './components/ChatUI';

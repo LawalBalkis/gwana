@@ -1,0 +1,143 @@
+/* Animation Keyframes and Classes */
+
+/* Fade Animations */
+@keyframes fadeIn { 
+  from { opacity: 0; transform: translateY(10px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+@keyframes fadeOut { 
+  from { opacity: 1; transform: scale(1); } 
+  to { opacity: 0; transform: scale(0.95); } 
+}
+.animate-fade-in { animation: fadeIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+.animate-fade-out { animation: fadeOut 0.4s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards; }
+.animate-fade-in-out { animation: fadeIn 0.5s ease-out, fadeOut 0.5s ease-in 2.5s forwards; }
+
+/* Pulse and Glow Animations */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px var(--accent-cyan), 0 0 20px var(--accent-cyan); transform: scale(1); }
+  50% { box-shadow: 0 0 20px var(--accent-cyan), 0 0 40px var(--accent-cyan); transform: scale(1.05); }
+}
+.animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+
+@keyframes flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px var(--accent-cyan), 0 0 80px var(--accent-cyan), 0 0 90px var(--accent-cyan), 0 0 100px var(--accent-cyan), 0 0 150px var(--accent-cyan); }
+  20%, 24%, 55% { text-shadow: none; }
+}
+
+@keyframes scanline-flicker {
+  0% { opacity: 0.4; }
+  25% { opacity: 0.3; }
+  50% { opacity: 0.5; }
+  75% { opacity: 0.35; }
+  100% { opacity: 0.4; }
+}
+
+/* Glitch Animations */
+@keyframes glitchIn {
+  0% {
+    transform: translate(10px, -5px) scale(1.02);
+    clip-path: polygon(0 25%, 100% 25%, 100% 30%, 0 30%);
+    opacity: 0.5;
+  }
+  20% {
+    transform: translate(-5px, 2px) scale(0.98);
+    clip-path: polygon(0 60%, 100% 60%, 100% 65%, 0 65%);
+    opacity: 0.8;
+  }
+  40%, 100% {
+    transform: translate(0, 0) scale(1);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    opacity: 1;
+  }
+}
+.animate-glitch-in { animation: glitchIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards; }
+
+/* Text Animations */
+@keyframes textDecode {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-text-decode {
+  animation: textDecode 0.5s forwards;
+  opacity: 0;
+}
+
+/* Thinking Indicator */
+.thinking-indicator-ring {
+  stroke-dasharray: 283;
+  stroke-dashoffset: 283;
+  transform-origin: 50% 50%;
+  animation: thinking-draw 2s ease-in-out infinite;
+}
+@keyframes thinking-draw {
+  0% { stroke-dashoffset: 283; transform: rotate(0deg); }
+  50% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -283; transform: rotate(360deg); }
+}
+
+/* Grid Pan Animation */
+@keyframes grid-pan {
+  from { background-position: 0 0; }
+  to { background-position: 40px 40px; }
+}
+
+/* Symbol Float Animation */
+@keyframes symbol-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  10%, 90% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-40px) rotate(180deg) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Globe Animations */
+@keyframes globe-spin {
+  from { background-position: 0 0, 0 0, 0 0; }
+  to { background-position: 0 0, -20px -40px, -40px -20px; }
+}
+@keyframes globe-rotate {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Data Line Animation */
+@keyframes data-fly {
+  from { transform: translateX(-100vw); }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.5; }
+  to { transform: translateX(100vw); }
+}
+
+/* News Ticker Animation */
+@keyframes ticker-scroll {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Logo Animations */
+@keyframes logo-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes logo-pulse {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
+}
+
+.logo-orbit {
+  transform-origin: center;
+  animation: logo-rotate 20s linear infinite;
+}
+.logo-dot {
+  animation: logo-pulse 3s ease-in-out infinite;
+}
