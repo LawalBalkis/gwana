@@ -599,6 +599,7 @@ const KwararruApp: React.FC<{
     logout: () => void;
     updateCurrentUser: (updates: Partial<UserProfile>) => void;
 }> = ({ initialState, currentUser, isSubscribed, logout, updateCurrentUser }) => {
+    const liveAPIContext = useLiveAPIContext();
     const [persona, setPersona] = useState<Persona>(initialState?.persona || 'Agent Zero');
     const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
     const [chatSessions, setChatSessions] = useState<Record<AiMode, Message[]>>(() => initialState?.chatSessions || initializeChatSessions());
@@ -1310,7 +1311,7 @@ export default function App() {
                 onIntentNavigation={() => {}}
             >
                 <AppRegistryProvider apps={ALL_APP_MANIFESTS}>
-                    <LiveAPIProvider 
+                    <LiveAPIProvider
                         currentUser={currentUser}
                         subscriptionIsActive={isSubscribed}
                         updateFreeUsage={(seconds) => updateCurrentUser({ ...currentUser, subscription: { ...currentUser.subscription, freeMinutesUsedToday: (currentUser.subscription.freeMinutesUsedToday || 0) + seconds } })}
