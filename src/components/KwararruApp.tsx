@@ -8,7 +8,6 @@ import { ChatUI } from './ChatUI';
 import SettingsScreen from './SettingsScreen';
 import DashboardScreen from './DashboardScreen';
 import CalendarScreen from './CalendarScreen';
-import StudyHubScreen from './StudyHubScreen';
 import { QuizShowUI } from './QuizConsole';
 import DebateStageUI from './DebateStageUI';
 import TranslatorConsole from './TranslatorConsole';
@@ -144,7 +143,8 @@ const KwararruApp: React.FC<KwararruAppProps> = ({
         return <CalendarScreen />;
 
       case 'study':
-        return <StudyHubScreen />;
+        // Study app now uses its own three-panel layout
+        return null;
 
       case 'quiz':
         return <QuizShowUI />;

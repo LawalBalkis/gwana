@@ -27,7 +27,6 @@ import ProactiveActionModal from './components/ProactiveActionModal';
 import AgentPresence from './components/AgentPresence';
 import SharedContentViewer from './components/SharedContentViewer';
 import MeetingSetupModal from './components/MeetingSetupModal';
-import StudyHubScreen, { ProgressTracker } from './components/StudyHubScreen';
 import CalendarScreen, { EventFormModal } from './components/CalendarScreen';
 import WorkflowEditorModal from './components/WorkflowEditorModal';
 import SubscriptionModal from './components/SubscriptionModal';
@@ -427,7 +426,8 @@ const KwararruAppUI: React.FC<any> = (props) => {
             case 'settings':
                 return <SettingsScreen {...{currentUser, logout, persona, settings, callHistory, updateSettings, clearChat, exportChat, setView, setShowStatsModal, setShowKeyboardShortcuts, togglePersona: () => handleSetPersona(persona === 'Agent Zero' ? 'Agent Zara' : 'Agent Zero'), isDesktop, onBack: () => setView('dashboard'), workflows, onOpenWorkflowEditor: handleOpenWorkflowEditor, onDeleteWorkflow: handleDeleteWorkflow, onRunWorkflow: handleRunWorkflow, onToggleWorkflow: handleToggleWorkflow, setShowSubscriptionModal}} />;
             case 'studyHub':
-                return <StudyHubScreen {...{items: studyHubItems, onRemove: removeStudyHubItem, setView, studyProgress}} />;
+                // Removed - Study Hub now uses new architecture via Study App
+                return null;
             case 'calendar':
                 return <CalendarScreen {...{events: calendarEvents, onAddEvent: handleAddCalendarEvent, onDeleteEvent: handleDeleteCalendarEvent, setView, setIsFormOpen: setIsCalendarFormOpen}} />;
             case 'appDrawer':
@@ -560,7 +560,9 @@ const KwararruAppUI: React.FC<any> = (props) => {
                                     <Plus size={16} /> Add Event
                                 </button>
                             ) : view === 'studyHub' ? (
-                                <ProgressTracker progress={studyProgress} />
+                                <div className="p-4 text-center text-[var(--text-secondary)] text-sm">
+                                    Study Hub
+                                </div>
                             ) : (
                                 <AgentPresence
                                     view={view}
