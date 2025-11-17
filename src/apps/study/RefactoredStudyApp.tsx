@@ -3,7 +3,7 @@ import type { AppProps } from '@/src/system/types';
 import type { StudyHubItem, StudyProgress } from '@/src/lib/types';
 import ThreePanelLayout from '@/src/components/layouts/ThreePanelLayout';
 import StudyLeftPanel from '@/src/components/study/StudyLeftPanel';
-import StudyRightPanel from '@/src/components/study/StudyRightPanel';
+import AIAssistantPanel from '@/src/shared/components/ai/AIAssistantPanel';
 import EnhancedStudyHub from '@/src/components/study/EnhancedStudyHub';
 import StudySession from '@/src/components/study/StudySession';
 import AnalyticsDashboard from '@/src/components/AnalyticsDashboard';
@@ -70,9 +70,9 @@ const RefactoredStudyApp: React.FC<AppProps> = ({
   const sessionContext = activeSession
     ? {
         topic: activeSession.type === 'learningPath' ? activeSession.goal : activeSession.topic,
-        itemsReviewed: 0,
-        correctAnswers: 0,
-        currentStreak: 0
+        progress: 67,
+        timeSpent: '23 min',
+        confidence: 'Building' as const
       }
     : undefined;
 
@@ -93,6 +93,10 @@ const RefactoredStudyApp: React.FC<AppProps> = ({
           'Show related concepts'
         ]
       : [];
+
+  const handleSuggestionClick = (suggestion: string) => {
+    systemServices.setToastMessage(`Action: ${suggestion}`);
+  };
 
   // Render center panel based on current view
   const renderCenterPanel = () => {
@@ -151,7 +155,7 @@ const RefactoredStudyApp: React.FC<AppProps> = ({
   };
 
   return (
-    <div className="h-full w-full bg-[var(--bg-primary)]">
+    <div className="h-full w-full bg-background">
       <ThreePanelLayout
         leftPanel={
           <StudyLeftPanel
@@ -164,11 +168,14 @@ const RefactoredStudyApp: React.FC<AppProps> = ({
         }
         centerPanel={renderCenterPanel()}
         rightPanel={
-          <StudyRightPanel
+          <AIAssistantPanel
             persona={persona}
             setPersona={setPersona}
             sessionContext={sessionContext}
             suggestions={suggestions}
+            onSuggestionClick={handleSuggestionClick}
+            showStats={currentView === 'hub'}
+            stats={{ todayMinutes: 45, streak: 12 }}
           />
         }
       />

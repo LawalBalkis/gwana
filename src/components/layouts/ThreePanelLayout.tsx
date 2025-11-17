@@ -22,26 +22,26 @@ const ThreePanelLayout: React.FC<ThreePanelLayoutProps> = ({
 }) => {
   return (
     <>
-      {/* Desktop Layout - Three Panels */}
-      <div className="hidden md:flex h-full w-full">
-        {/* Left Panel - Navigation & Controls */}
-        <div className="w-[280px] flex-shrink-0 bg-[var(--bg-secondary)]/50 backdrop-blur-sm border-r border-[var(--border-color)] overflow-y-auto">
+      {/* Desktop Layout - Three Panels (20% | 50% | 30%) */}
+      <div className="hidden lg:flex h-full w-full">
+        {/* Left Panel - Navigation & Controls (280px ~ 20%) */}
+        <div className="w-[280px] flex-shrink-0 bg-background/50 backdrop-blur-sm border-r border-border overflow-y-auto">
           {leftPanel}
         </div>
 
-        {/* Center Panel - Main Content */}
-        <div className="flex-1 overflow-y-auto bg-[var(--bg-primary)]">
+        {/* Center Panel - Main Content (50%) */}
+        <div className="flex-1 overflow-y-auto bg-background">
           {centerPanel}
         </div>
 
-        {/* Right Panel - AI Assistant */}
-        <div className="w-[360px] flex-shrink-0 bg-[var(--bg-secondary)]/30 backdrop-blur-sm border-l border-[var(--border-color)] overflow-y-auto">
+        {/* Right Panel - AI Assistant (360px ~ 30%) */}
+        <div className="w-[360px] flex-shrink-0 bg-background/30 backdrop-blur-sm border-l border-border overflow-y-auto">
           {rightPanel}
         </div>
       </div>
 
-      {/* Mobile Layout - Single Panel */}
-      <div className="md:hidden h-full w-full flex flex-col bg-[var(--bg-primary)]">
+      {/* Mobile Layout - Single Panel with Bottom Nav */}
+      <div className="lg:hidden h-full w-full flex flex-col bg-background">
         {mobileView === 'left' && leftPanel}
         {mobileView === 'center' && centerPanel}
         {mobileView === 'right' && rightPanel}
