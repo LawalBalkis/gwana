@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { AppProps } from '@/src/system/types';
 import { ChatUI } from '@/src/components/ChatUI';
 
 /**
  * Chat Application - Main conversational interface
- * Uses the existing ChatUI component with system services integration
+ * Handles text and voice conversations with AI assistant
  */
 const ChatApp: React.FC<AppProps> = ({ 
   appId, 
@@ -13,15 +13,42 @@ const ChatApp: React.FC<AppProps> = ({
   onNavigate, 
   isActive 
 }) => {
-  // The ChatUI is rendered by the parent App.tsx during transition
-  // This component serves as the app entry point and will eventually
-  // contain the full chat logic with systemServices integration
-  
-  // Future: Move chat state management here
-  // Future: Handle SHARE, VIEW intents from other apps
-  // Future: Use systemServices.ai.sendMessage() instead of direct imports
-  
-  return null;
+  const [intentData, setIntentData] = useState<any>(null);
+
+  // Handle incoming intents (SHARE, VIEW from other apps)
+  useEffect(() => {
+    if (!initialIntent || !isActive) return;
+
+    switch (initialIntent.action) {
+      case 'SHARE':
+        if (initialIntent.data?.text) {
+          setIntentData({
+            type: 'shared-text',
+            content: initialIntent.data.text,
+            source: initialIntent.data.source
+          });
+        }
+        break;
+      
+      case 'VIEW':
+        if (initialIntent.data) {
+          setIntentData({
+            type: 'view-data',
+            content: initialIntent.data
+          });
+        }
+        break;
+    }
+  }, [initialIntent, isActive]);
+
+  return (
+    <div className="h-full w-full">
+      <ChatUI 
+        initialIntentData={intentData}
+        onClearIntent={() => setIntentData(null)}
+      />
+    </div>
+  );
 };
 
 export default ChatApp;
