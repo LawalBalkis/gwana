@@ -13,5 +13,5 @@ export const studyAppManifest: AppManifest = {
     { action: 'STUDY', dataType: 'document/*' },
     { action: 'CREATE', dataType: 'flashcard/*' },
   ],
-  entryPoint: lazy(() => import('./StudyApp')),
+  entryPoint: lazy(() => import('./RefactoredStudyApp')),
 };
